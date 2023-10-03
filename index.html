@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/js/slider.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <div class="position-absolute w-100 h-100 bottom-100 bg-white z-100 transition" id="searchbar">
+                <div class="row justify-content-center align-items-center w-100 h-100">
+                    <div class="col-lg-6 col-md-6 col-10 ms-3 border border-danger px-3 py-2 rounded-5 d-flex align-items-center">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="ps-2 w-75 border-0 outlineNone flex-grow-1">
+                    </div>
+                    <div class="col-1">
+                        <p class="redHover cursor transition mb-0" id="closeSeachBar">
+                            <i class="fa-solid fa-xmark fs-3"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/img/logo.svg" alt="Bootstrap" width="100">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
+                        <li class="nav-item">
+                            <a class="nav-link active redHover" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown notRelative">
+                            <a class="nav-link dropdown-toggle redHover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Collectios
+                            </a>
+                            <div class="dropdown-menu start-50 vw-90">
+                                <div class="container-fluid">
+                                    <div class="row p-3" id="collectionContainer">
+                                        <!-- this container is generated with js in collection.js -->
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link redHover" href="#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link redHover" href="#">Android</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link redHover" href="#">Accessories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link redHover" href="#">Memory&Storage</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle redHover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item redHover" href="#">About Us</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item redHover" href="#">Contact s</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item redHover" href="#">Blog</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item redHover" href="#">FAQs</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center gap-3 ms-auto">
+                    <p class="mb-0 cursor redHover transition hideXS">
+                        <i class="fa-solid fa-user"></i>
+                    </p>
+                    <p class="mb-0 position-relative cursor redHover transition hideXS">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </p>
+                    <p class="mb-0 cursor redHover transition" id="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </p>
+                    <div class="position-relative w-50px">
+                        <a class="nav-link dropdown-toggle text-uppercase" id="select" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            us <img src="https://flagcdn.com/us.svg" width="20px" class="mb-1" alt="flag">
+                        </a>
+                        <div class="dropdown-menu ps-2 pe-3 w-100px overflow-scroll z-100 translateX" id="country">
+                            <!-- this is generated with js -->
+                        </div>
+                    </div>
+                </div>
+                <button class="navbar-toggler ms-4 d-flex d-lg-none flex-column justify-content-between clicked mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <span class="toggler-icon top-bar transition-5"></span>
+                    <span class="toggler-icon middle-bar transition-5"></span>
+                    <span class="toggler-icon bottom-bar transition-5"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="offcanvas offcanvas-start bottom-0" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-body position-relative overflow-hidden">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link d-flex align-items-center" href="#" id="openColllection">
+                            Collectios 
+                            <i class="fa-solid fa-arrow-right ms-auto"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link" href="#">Android</a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link" href="#">Accessories</a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link" href="#">Memory&Storage</a>
+                    </li>
+                    <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <a class="nav-link d-flex align-items-center" href="#" id="openPages">
+                            Pages
+                            <i class="fa-solid fa-arrow-right ms-auto"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="container-fluid w-100 h-100 position-absolute top-0 start-100 bg-white overflow-scroll transition" id="collectionNav">
+                    <div class="row p-3">
+                        <p class="col-12 p-3 fs-2 offcanvas-nav-in rounded-2 px-3 closeNavMenu" id="closeCollection">
+                            <i class="fa-solid fa-arrow-left"></i> 
+                            Collectios
+                        </p>
+                        <div id="collectionContainerOffCanvas">
+                            <!-- this container is generated with js in collection.js -->
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid w-100 h-100 position-absolute top-0 start-100 bg-white overflow-scroll transition" id="pagesNav">
+                    <div class="row p-3">
+                        <p class="col-12 p-3 fs-2 offcanvas-nav-in rounded-2 px-3 closeNavMenu" id="closePages">
+                            <i class="fa-solid fa-arrow-left"></i> 
+                            Pages
+                        </p>
+                        <div>
+                            <a class="redHover nav-link mb-2" href="#">About Us</a>
+                            <a class="redHover nav-link mb-2" href="#">Contact s</a>
+                            <a class="redHover nav-link mb-2" href="#">Blog</a>
+                            <a class="redHover nav-link mb-2" href="#">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-3 py-4 offcanvas-nav-in">
+                <div class="d-flex justify-content-between mb-3">
+                    <p class="mb-0 cursor redHover transition NothideXS">
+                        <i class="fa-solid fa-user"></i>
+                        log in
+                    </p>
+                    <p class="mb-0 position-relative cursor redHover transition NothideXS">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </p>
+                </div>
+                <div class="d-flex gap-3">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-pinterest-p"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+        <div class="vh-100 overflow-hidden">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade w-100 h-100">
+                <div class="carousel-inner h-100">
+                    <div class="carousel-item active h-100 Backimg" style="--img-url: url(./../img/camera.jpg); --position: left;">
+                        <div class="container h-100 d-flex justify-content-end align-items-center">
+                            <div class="text-white text-center maxWidth200">
+                                <h5 class="notactiveLeft transition">Revolutionizing Photography with</h5>
+                                <h1 class="notactiveRight transition">iPhone 15 Pro Max</h1>
+                                <button class="btnBlack notactiveLeft text-white text-uppercase bg-black transition fs-3 py-2 px-5 rounded-5">
+                                    shop now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100 Backimg" style="--img-url: url(./../img/screen.jpg); --position: right;">
+                        <div class="container h-100 d-flex justify-content-start align-items-center">
+                            <div class="text-white text-center maxWidth200">
+                                <h1 class="notactiveRight transition">Cutting-Edge Pro Max</h1>
+                                <h5 class="notactiveLeft transition mb-4">Display Technology</h5>
+                                <button class="btnBlack notactiveRight text-dark text-uppercase bg-white transition fs-3 py-2 px-5 rounded-5">
+                                    Buy now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100 Backimg" style="--img-url: url(./../img/usbC.jpg); --position: left;">
+                        <div class="container h-100 d-flex justify-content-end align-items-center">
+                            <div class="text-white text-center maxWidth200 me-md-5 me-sm-0">
+                                <h5 class="notactiveLeft transition">Next-Gen Smartphone</h5>
+                                <h1 class="notactiveRight transition mb-4"> Adopts USB-C</h1>
+                                <button class="btnBlack notactiveLeft text-white text-uppercase bg-black transition fs-3 py-2 px-5 rounded-5">
+                                    shop now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square" aria-hidden="true">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square" aria-hidden="true">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <a href="#" class="btnBlack rounded-pill bg-black justify-content-center align-items-center square position-fixed end-0 bottom-0 translate-middle transition cursor displayOff" id="goUp">
+            <i class="fa-solid fa-arrow-up text-white"></i>
+        </a>
+    </header>
+
+    <main>
+        <div class="border-bottom border-secondary offcanvas-nav-in">
+            <div class="container">
+                <div class="row  justify-content-between align-items-center align-items-center">
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center gap-3 hoverScale my-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="./assets/img/free-deliver-icon.webp" alt="free deliver icon" class="w-75 position-relative transition">
+                        </div>
+                        <div>
+                            <h1 class=" mb-0 fs-4 redHover transition">FREE SHIPPING</h1>
+                            <p class="mb-0 opacity-75">For orders over $50</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center gap-3 hoverScale my-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="./assets/img/offers-icon.webp" alt="free deliver icon" class="w-75 position-relative transition">
+                        </div>
+                        <div>
+                            <h1 class="mb-0 fs-4 redHover transition">OFFICIAL DISCOUNTS</h1>
+                            <p class="mb-0 opacity-75">Save Big on next product</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center gap-3 mx-auto hoverScale my-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="./assets/img/support-icon.webp" alt="free deliver icon" class="w-75 position-relative transition">
+                        </div>
+                        <div>
+                            <h1 class="mb-0 fs-4 redHover transition">24/7 HELPLINE</h1>
+                            <p class="mb-0 opacity-75">Care till the end</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="ics">
+            <div class="container py-5">
+                <h1 class="text-center mb-3">WHAT MAKES THE ESSENTIAL DIFFERENT?</h1>
+                <p class="text-center opacity-75 letterSpacing">EXPERIENCE HIGH PERFORMANCE AND SECURE</p>
+                <div class="row mt-5">
+                    <div class="col-lg-4 col-md-6 p-3 hoverDownScale">
+                        <div class="d-flex justify-content-center mb-5">
+                            <img src="./assets/img/ic12.webp" alt="ic12" class="transition">
+                        </div>
+                        <h2 class="text-center fs-5 redHover transition cursor">PERFECT CUT</h2>
+                        <h1 class="text-center fs-4 redHover transition cursor">DUAL CAMERA</h1>
+                        <p class="text-center opacity-75">Tristique senectus et netus et malesuada ant reiet fames.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-3 hoverDownScale">
+                        <div class="d-flex justify-content-center mb-5">
+                            <img src="./assets/img/ic13.avif" alt="ic12" class="transition">
+                        </div>
+                        <h2 class="text-center fs-5 redHover transition cursor">PERFECT CUT</h2>
+                        <h1 class="text-center fs-4 redHover transition cursor">DUAL CAMERA</h1>
+                        <p class="text-center opacity-75">Tristique senectus et netus et malesuada ant reiet fames.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mx-auto p-3 hoverDownScale">
+                        <div class="d-flex justify-content-center mb-5">
+                            <img src="./assets/img/ic11.webp" alt="ic12" class="transition">
+                        </div>
+                        <h2 class="text-center fs-5 redHover transition cursor">PERFECT CUT</h2>
+                        <h1 class="text-center fs-4 redHover transition cursor">DUAL CAMERA</h1>
+                        <p class="text-center opacity-75">Tristique senectus et netus et malesuada ant reiet fames.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="overflow-hidden" id="bestMatch">
+            <div class="container py-5 ">
+                <h1 class="text-center mb-3">FIND YOUR PERFECT MATCH</h1>
+                <p class="text-center opacity-75 letterSpacing">EXPLORE AND FIND RIGHT ONE</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8 col-sm-10 customHeight">
+                        <div class="w-100 h-100 position-relative">
+                            <div class="w-100 h-100 ">
+                                <div class="position-relative w-100 h-100  transitionSlide" id="slider">
+                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 0;">
+                                        <div class="overlay position-absolute removeOverlay" style="--img-url: url(./../img/apple4.webp); --position: center;" data-slide="0">
+                                        </div>
+                                    </div>
+                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 1;">
+                                        <div class="overlay position-absolute" style="--img-url: url(./../img/apple2.webp); --position: center;" data-slide="1">
+                                        </div>
+                                    </div>
+                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 2;">
+                                        <div class="overlay position-absolute" style="--img-url: url(./../img/apple3.webp); --position: center;" data-slide="2">
+                                        </div>
+                                    </div>
+                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 3;">
+                                        <div class="overlay position-absolute"  style="--img-url: url(./../img/apple.webp); --position: center;" data-slide="3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square position-absolute top-50 start-0 translate-middle-y cursor" id="left">
+                                <i class="fa-solid fa-chevron-left text-white"></i>
+                            </span>
+                            <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square position-absolute top-50 end-0 translate-middle-y cursor" id="right">
+                                <i class="fa-solid fa-chevron-right text-white"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="features">
+            <div class="container py-5">
+                <h1 class="text-center mb-3">POSSIBILITIES. PERFORMANCE. POWER.</h1>
+                <p class="text-center opacity-75 letterSpacing">FASTER PROCESSING WITH LESS POWER</p>
+                <div class="position-relative">
+                    <img src="./assets/img/features.webp" alt="iPhone" class="w-100">
+                    <div class="position-absolute feature" style="--dot-id: 0.9">
+                        <div class="dot rounded-pill bg-black" style="--animation-delay: 0.9s; --line-level: 1;"></div>
+                    </div>
+                    <div class="position-absolute feature" style="--dot-id: 3">
+                        <div class="dot rounded-pill bg-black" style="--animation-delay: 2s; --line-level: 3;"></div>
+                    </div>
+                    <div class="position-absolute feature" style="--dot-id: 5">
+                        <div class="dot rounded-pill bg-black" style="--animation-delay: 0.5s; --line-level: 1;"></div>
+                    </div>
+                    <div class="position-absolute feature" style="--dot-id: 7.1">
+                        <div class="dot rounded-pill bg-black" style="--animation-delay: 1.5s; --line-level: 3;"></div>
+                    </div>
+                </div>
+                <div class="row transformOdd">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="./assets/img/ic7.webp" alt="ic7" class="w-25">
+                        </div>
+                        <h5 class="text-center redHover transition cursor">SCORPION PROCESSOR</h5>
+                        <p class="text-center">Tristique senectus et netus et malesuada fames ac turpis.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="./assets/img/ic10.webp" alt="ic7" class="w-25">
+                        </div>
+                        <h5 class="text-center redHover transition cursor">DUAL SIM CARDS</h5>
+                        <p class="text-center">Donec ultrices tincidunt arcu non sodales neque sodales ut.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="./assets/img/ic90.webp" alt="ic7" class="w-25">
+                        </div>
+                        <h5 class="text-center redHover transition cursor">48 MP CAMERA</h5>
+                        <p class="text-center">Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="./assets/img/ic8.png" alt="ic7" class="w-25">
+                        </div>
+                        <h5 class="text-center redHover transition cursor">48 HRS BACKUP</h5>
+                        <p class="text-center">Natoque penatibus et magnis dis parturient montes nascetur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="fixedBackimg mt-5" style="--fixed-img: url(./../img/applelogo.png);">
+            <div class="container vh-100 d-flex justify-content-center align-items-center flex-column">
+                <p class="text-white text-center">JENNIFER F., CASPER CUSTOMER</p>
+                <h1 class="text-white text-center mb-4 fontSizeBig">"Unbeatable price, and it’s super comfortable"</h1>
+                <button class="btnBlack text-dark text-uppercase bg-white transition fs-5 py-2 px-4 rounded-5">
+                    view more
+                </button>
+            </div>
+        </section>
+        <section>
+            <div class="container py-5">
+                <h1 class="text-center mb-3">RAISE YOUR EXPECTATIONS</h1>
+                <p class="text-center opacity-75 letterSpacing mb-5">REFINED VIEWING EXPERIENCE</p>
+                <div class="row justify-content-between">
+                    <div class="col-md-5 order-md-0 order-1 mt-md-0 mt-5">
+                        <h4 class="center-sm">42 FRONT CAMERA FOR PERFECT SHOT</h4>
+                        <p class="center-sm">
+                            Porem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui official.
+                        </p>
+                        <p class="center-sm ">
+                            Diam vulputate ut pharetra sit. Elit ut aliquam purus sit amet luctus venenatis lectus. Lorem dolor sed viverra ipsum nunc aliquet. Ut consequat semper viverra nam libero. Velit ut tortor aremn.
+                        </p>
+                    </div>
+                    <div class="col-md-5 order-md-1 order-0 Backimg px-0" style="--img-url: url(./../img/appleCollection.jpg); --position: center;">
+                        <img src="./assets/img/appleCollection.jpg" alt="appleCollection" class="imgHide w-100">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="fixedBackimg" style="--fixed-img: url(./../img/iphoneBack.webp);">
+            <div class="container pt-5">
+                <h1 class="text-center mb-3 text-white">LOSE YOURSELF IN ENTERTAINMENT</h1>
+                <p class="text-center opacity-75 letterSpacing mb-5 text-white">SPEND LESS ENJOY MORE</p>
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3">
+                        <div class="object-fit-contain bg-white p-4 text-center">
+                            <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
+                                <p class="mb-0 text-white">1</p>
+                            </div>
+                            <h5>TRIPLE CAMERA</h5>
+                            <p>Duis at tellus at urna condimentum mattis pellentesque id nibh. Elit scelerisque mauris pellentesque pulvinar. Nunc aliquet bibendum enim facilisis gravida.</p>
+                            <button class="btnBlack text-white text-uppercase bg-black transition py-2 px-4 rounded-5">
+                                view more
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3">
+                        <div class="object-fit-contain bg-white p-4 text-center">
+                            <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
+                                <p class="mb-0 text-white">2</p>
+                            </div>
+                            <h5>ULTRA GAME MODE</h5>
+                            <p>Urna et pharetra pharetra massa massa ultricies mi. Scelerisque varius morbi enim nunc faucibus a pellentesque. Purus sit amet volutpat consequat mauris.</p>
+                            <button class="btnBlack text-white text-uppercase bg-black transition py-2 px-4 rounded-5">
+                                view more
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3 mx-sm-auto">
+                        <div class="object-fit-contain bg-white p-4 text-center">
+                            <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
+                                <p class="mb-0 text-white">3</p>
+                            </div>
+                            <h5>SUPER AMOLED DISPLAY</h5>
+                            <p>Urna neque viverra justo nec ultrices dui sapien eget mi. Sed elementum tempus egestas sed sed risus pretium quam vulputate. Neque sodales ut etiam.</p>
+                            <button class="btnBlack text-white text-uppercase bg-black transition py-2 px-4 rounded-5">
+                                view more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container py-5">
+                <h1 class="text-center mb-3">INNOVATIVE QUALITIES & FEATURES</h1>
+                <p class="text-center opacity-75 letterSpacing mb-5">SHOW YOURS TO THE WORLD</p>
+                <div class="row align-items-center position-relative bg-white-transparent py-4">
+                    <div class="col-lg-5 col-sm-6 col-12" style="--align: end">
+                        <div class="d-flex flexColummd mb-3 align-items-end-md">
+                            <div class="flex-grow-1 pe-0 me-3 text-bold order-md-0 order-1 center-xs">
+                                <h5 class="redHover transition">INTELLIGENT PROCESSOR</h5>
+                                <p>Tellus in hac habitasse platea dictumst vestibulum rhoncus srd mana erti qeueri</p>
+                            </div>
+                            <div>
+                                <img src="./assets/img/ic5.png" alt="ic5" class="max-width-custom imgScale transition order-md-1 order-0 mb-auto">
+                            </div>
+                        </div>
+                        <div class="d-flex flexColummd mb-3 align-items-end-md">
+                            <div class="flex-grow-1 pe-0 me-3 text-bold order-md-0 order-1 center-xs">
+                                <h5 class="redHover transition">HD SURROUND AUDIO</h5>
+                                <p>Sagittis eu volutpat odio ante ut diam quam metus dictfacilisis mauris sit am.</p>
+                            </div>
+                            <div>
+                                <img src="./assets/img/ic6.webp" alt="ic5" class="max-width-custom imgScale transition order-md-1 order-0">
+                            </div>
+                        </div>
+                        <div class="d-flex flexColummd align-items-end-md">
+                            <div class="flex-grow-1 pe-0 me-3 text-bold order-md-0 order-1 center-xs">
+                                <h5 class="redHover transition">STYLISH BEVEL EDGES</h5>
+                                <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid</p>
+                            </div>
+                            <div>
+                                <img src="./assets/img/ic3.png" alt="ic5" class="max-width-custom imgScale transition order-md-1 order-">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 position-absolute-lg">
+                        <img src="./assets/img/iphone21424.jpg" alt="iphone21424" class="w-100">
+                    </div>
+                    <div class="col-lg-5 col-sm-6 col-12" style="--align: start">
+                        <div class="d-flex flexColummd mb-3 align-items-center-sm">
+                            <div>
+                                <img src="./assets/img/ic1.webp" alt="ic5" class="max-width-custom imgScale transition">
+                            </div>
+                            <div class="flex-grow-1 pe-0 ms-3 text-bold center-xs">
+                                <h5 class="redHover transition">4.0 WIFI SPECS</h5>
+                                <p>Commodo nulla facilisi nullam vehicula ipsum a arcu sagitis ipsum sed iacus.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flexColummd mb-3 align-items-center-sm">
+                            <div>
+                                <img src="./assets/img/ic4.png" alt="ic5" class="max-width-custom imgScale transition">
+                            </div>
+                            <div class="flex-grow-1 pe-0 ms-3 text-bold center-xs">
+                                <h5 class="redHover transition">MULIT TASKING & THREADING</h5>
+                                <p>Amet consectetur adipiscing velit laoreet nega id elit pellentesque habitant morbi .</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flexColummd align-items-center-sm">
+                            <div>
+                                <img src="./assets/img/ic2.png" alt="ic5" class="max-width-custom imgScale transition">
+                            </div>
+                            <div class="flex-grow-1 pe-0 ms-3 text-bold center-xs">
+                                <h5 class="redHover transition">CLOUD STORAGE</h5>
+                                <p>Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="overflow-hidden">
+            <div class="container py-5">
+                <h1 class="text-center mb-3">NEW ARRIVALS</h1>
+                <p class="text-center opacity-75 letterSpacing mb-5">FIND THE PERFECT PHONE FOR YOU</p>
+                <div class="row position-relative overflow-hidden pb-2">
+                    <div class="col-lg-3 col-md-6 col-sm-6 px-0">
+                        <div class=" transitionSlide position-relative object-fit-contain" id="sliderBig">
+                            <div class="w-100 px-2">
+                                <div class="customHeight"></div>
+                                <div class="height-300px"></div>
+                            </div>
+                        </div>
+                        <span class="btnBlack transition rounded-pill bg-black d-flex justify-content-center align-items-center square position-absolute top-50 start-0 translate-middle-y cursor" id="leftBig">
+                            <i class="fa-solid fa-chevron-left text-white"></i>
+                        </span>
+                        <span class="btnBlack transition rounded-pill bg-black d-flex justify-content-center align-items-center square position-absolute top-50 end-0 translate-middle-y cursor" id="rightBig">
+                            <i class="fa-solid fa-chevron-right text-white"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/slider.js"></script>
+    <script src="./assets/js/GenerateHtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+</body>
+</html>
