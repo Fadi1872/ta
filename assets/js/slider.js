@@ -33,20 +33,8 @@ left.addEventListener('click', () => {
 
 
 let clickNumber;
-window.addEventListener('resize', () => {
-    let windowWidth = window.innerWidth;
-    if(windowWidth >991){
-        clickNumber = 2;
-    }else if(windowWidth < 992 && windowWidth > 576){
-        clickNumber = 4;
-    }
-    else{
-        clickNumber = 6;
-    }
-});
 
-
-window.addEventListener('load', () => {
+function clickNum() {
     let windowWidth = window.innerWidth;
     if(windowWidth >991){
         clickNumber = 2;
@@ -56,7 +44,10 @@ window.addEventListener('load', () => {
     else{
         clickNumber = 5;
     }
-});
+};
+
+window.addEventListener('resize', clickNum);
+window.addEventListener('load', clickNum());
 
 rightBig.addEventListener('click', () => {
     (currentSlideBig === clickNumber)? currentSlideBig = currentSlideBig : currentSlideBig++ ;
