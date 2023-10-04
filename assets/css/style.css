@@ -156,6 +156,9 @@
 .dropdown-item:hover{
     background-color: transparent !important;
 }
+.fadi{
+    justify-content: center;
+}
 .w-100px{
     min-width: 120px !important;
     max-height: 140px !important;
@@ -178,8 +181,14 @@
     z-index: 1000;
     bottom: 6%;
 }
+.displayOff{
+    display: none;
+}
 /* end goUp */
 /* start hero */
+.maxWidth400{
+    max-width: 400px;
+}
 .carousel-item h1{
     font-size: 5rem;
 }

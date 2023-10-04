@@ -75,9 +75,9 @@ const ics = document.querySelector('#ics');
 window.addEventListener('scroll', () => {
     if(window.scrollY >= ics.offsetTop){
         goUp.classList.remove('displayOff');
-        goUp.classList.add('d-flex', 'displayOn');
+        goUp.classList.add('d-flex');
     }else{
-        goUp.classList.remove('d-flex', 'displayOn');
+        goUp.classList.remove('d-flex');
         goUp.classList.add('displayOff');
     }
 });

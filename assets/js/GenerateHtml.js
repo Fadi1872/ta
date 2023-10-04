@@ -17,10 +17,9 @@ function genrateCollection(tag, h, arr, col) {
         inner+= `<a href="#" class="redHover transition text-decoration-none text-dark mt-2">${element}</a>`;
     });
     tag.innerHTML += `
-    const collectionContainer = document.querySelector('#collectionContainer');
     <div class="${col} d-flex flex-column align-items-start">
-    <h4 class="border-bottom py-2">${h}</h4>
-    ${inner}
+        <h4 class="border-bottom py-2">${h}</h4>
+        ${inner}
     </div>
     `;
 };
