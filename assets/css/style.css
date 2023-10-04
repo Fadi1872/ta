@@ -8,7 +8,7 @@
 :root{
     --color-red: #d81a46;
 }
-
+/* general */
 .cursor{
     cursor: pointer;
 }
@@ -30,25 +30,53 @@
 .hoverDownScale:hover img{
     transform: scale(0.9);
 }
+.imgScale:hover{
+    transform: scale(1.2);
+}
+.max-width-custom{
+    max-width: 50px;
+}
+.center-xs{
+    text-align: var(--align);
+}
+.btnBlack{
+    border:  1px #fff solid;
+}
+.btnBlack:hover{
+    background-color: var(--color-red) !important;
+    border: 1px var(--color-red) solid;
+}
 .letterSpacing{
     letter-spacing: 5px;
 }
 .smallFont{
     font-size: 0.6rem;
 }
-
-
-
-
-.navbar, .z-100{
-    z-index: 2000 !important;
+.Backimg{
+    background: var(--img-url);
+    background-size: cover;
+    background-position: var(--position);
 }
-.offcanvas.offcanvas-start{
-    top: 56px !important;
+.fixedBackimg{
+    background: linear-gradient(-135deg,#000, #00000099), var(--fixed-img);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
-.dropdown-toggle::after{
-    margin-left: 10px;
+.square{
+    width: 50px;
+    height: 50px;
 }
+.smallSquare{
+    width: 40px;
+    height: 40px;
+}
+/* end of general */
+
+
+
+
+
 
 
 /* here is the styles to the toggle icon navbar */
@@ -105,11 +133,19 @@
 }
 /* end of the styles to the toggle icon navbar */
 
-
+/* start navbar */
+.navbar, .z-100{
+    z-index: 2000 !important;
+}
+.offcanvas.offcanvas-start{
+    top: 56px !important;
+}
+.dropdown-toggle::after{
+    margin-left: 10px;
+}
 .nav-link.active{
     color: var(--color-red) !important;
 }
-
 .notRelative{
     position: static !important;
 }
@@ -127,7 +163,6 @@
 .w-50px{
     width: 60px;
 }
-
 .offcanvas-nav-hover:hover{
     background-color: #eee;
 }
@@ -137,26 +172,17 @@
 .NothideXS{
     display: none;
 }
-
-.Backimg{
-    background: var(--img-url);
-    background-size: cover;
-    background-position: var(--position);
+/* end navbar */
+/* start goUp */
+#goUp{
+    z-index: 1000;
+    bottom: 6%;
 }
-.maxWidth200{
-    max-width: 600px;
-}
+/* end goUp */
+/* start hero */
 .carousel-item h1{
     font-size: 5rem;
 }
-.btnBlack{
-    border:  1px #fff solid;
-}
-.btnBlack:hover{
-    background-color: var(--color-red) !important;
-    border: 1px var(--color-red) solid;
-}
-
 .notactiveLeft{
     transform: translateX(-10%);
 }
@@ -166,21 +192,9 @@
 .carousel-item.active .notactiveLeft, .carousel-item.active .notactiveRight{
     transform: translateX(0);
 }
-.square{
-    width: 50px;
-    height: 50px;
-}
-.smallSquare{
-    width: 40px;
-    height: 40px;
-}
+/* end hero */
 
-
-
-
-.transitionSlide{
-    transition: 0.5s;
-}
+/* start best match */
 .icon{
     width: 75px;
     height: 75px;
@@ -203,6 +217,8 @@
 .inset10{
     inset: 10px;
 }
+/* end best match */
+/* start performance */
 .height-700px{
     height: 490px;
 }
@@ -212,12 +228,10 @@
 .height-147px{
     height: 147px;
 }
-.feature{
+.dot{
     top: 60%;
     left: calc( var(--dot-id) * 12.5%);
     transform: translateX(-50%);
-}
-.dot{
     width: 15px;
     height: 15px;
     animation: light 3s infinite ease-in;
@@ -250,41 +264,20 @@
     width: 2px;
     height:calc(var(--line-level)* 50px);
 }
-
+.dot-card{
+    border: #fff 1px solid;
+}
 .transformOdd .col-lg-3:nth-child(odd){
     transform: translateY(-40%);
 }
 .transformOdd .col-lg-3:nth-child(even){
     transform: translateY(10%);
 }
+/* end performance */
 
-.fixedBackimg{
-    background: linear-gradient(-135deg,#000, #00000099), var(--fixed-img);
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-}
-.imgHide{
-    display: none;
-}
-#goUp{
-    z-index: 1000;
-}
-.displayOff{
-    display: none !important;
-}
-.displayOn{
-    display: block !important;
-}
-.imgScale:hover{
-    transform: scale(1.2);
-}
-.max-width-custom{
-    max-width: 50px;
-}
-.center-xs{
-    text-align: var(--align);
-}
+
+
+/* start QUALITIES & FEATURES */
 .bg-white-transparent{
     background-color: #fffd;
 }
@@ -304,13 +297,14 @@
 .cardHover:hover .imgChange{
     background: var(--hover-url) ;
 }
-
 .height-300px{
     height: 300px;
 }
 .min-height-300px{
     min-height: 300px;
 }
+/* end QUALITIES & FEATURES */
+/* start Advanteges */
 .bg-Dark-transparent{
     background-color: #0009;
 }
@@ -333,6 +327,8 @@
 .translate-middle-y-xs{
     bottom: 0;
 }
+/* end Advanteges */
+/* start CUSTOMERS LOVE */
 .accordion{
     --bs-accordion-bg: transparent !important;
 }
@@ -359,6 +355,8 @@
 .minmax{
     width: 70px;
 }
+/* end CUSTOMERS LOVE */
+/* start phone support */
 .list-inline li::after{
     content: "|";
     padding-inline: 15px;
@@ -367,6 +365,10 @@
 .list-inline li:nth-child(5):after{
     content: none;
 }
+/* end phone support */
+
+
+
 
 
 
@@ -407,6 +409,7 @@
         min-width: 200px;
     }
 }
+
 @media screen and (max-width: 767px) {
     .dot::after{
         display: none;
@@ -416,9 +419,6 @@
     }
     .center-sm{
         text-align: center;
-    }
-    .imgHide{
-        display: block;
     }
     .flexColummd{
         flex-direction: column;
@@ -430,6 +430,7 @@
         width: 50% !important;
     }
 }
+
 @media screen and (max-width : 575px) {
     .hideXS{
         display: none;

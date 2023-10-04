@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- external css file -->
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/js/slider.js">
+    <!-- bootsrap cdn css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- font awsome cdn js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-    <title>Document</title>
+    <title>Apple</title>
 </head>
 <body>
 
+    <!-- header with navbar hero section and the goUp fixed button -->
     <header>
+        <!-- the navbar component from bootstrap -->
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <!-- this is the search bar that comes from top -->
             <div class="position-absolute w-100 h-100 bottom-100 bg-white z-100 transition" id="searchbar">
                 <div class="row justify-content-center align-items-center w-100 h-100">
                     <div class="col-lg-6 col-md-6 col-10 ms-3 border border-danger px-3 py-2 rounded-5 d-flex align-items-center">
@@ -28,16 +33,21 @@
                     </div>
                 </div>
             </div>
+            <!-- the main nav -->
             <div class="container">
+                <!-- this is the logo that i made -->
                 <a class="navbar-brand" href="#">
                     <img src="./assets/img/logo.svg" alt="Bootstrap" width="100">
                 </a>
+                <!-- here is the part that will collapse on sm screens -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- the ul that has all page nav-links that will collapse -->
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
                         <li class="nav-item">
                             <a class="nav-link active redHover" href="#">Home</a>
                         </li>
                         <li class="nav-item dropdown notRelative">
+                            <!-- the collection link is a larg dropdown menu -->
                             <a class="nav-link dropdown-toggle redHover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Collectios
                             </a>
@@ -77,28 +87,35 @@
                         </li>
                     </ul>
                 </div>
+                <!-- this is the part that will stay on sm screens -->
                 <div class="d-flex align-items-center gap-3 ms-auto">
+                    <!-- the user log in icon and the cart will be hidden on xs screens and will appear on the offcanvas -->
+                    <!-- and the class hideXS is responsible for that -->
                     <p class="mb-0 cursor redHover transition hideXS">
                         <i class="fa-solid fa-user"></i>
                     </p>
                     <p class="mb-0 position-relative cursor redHover transition hideXS">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                            <span class="visually-hidden">New alerts</span>
+                            <span class="visually-hidden">1</span>
                         </span>
                     </p>
+                    <!-- the search icon will show and hide the seach bar -->
                     <p class="mb-0 cursor redHover transition" id="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </p>
+                    <!-- the country select made with js in generateHtml.js -->
                     <div class="position-relative w-50px">
                         <a class="nav-link dropdown-toggle text-uppercase" id="select" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- this content is going to be changed to what the user will select -->
                             us <img src="https://flagcdn.com/us.svg" width="20px" class="mb-1" alt="flag">
                         </a>
                         <div class="dropdown-menu ps-2 pe-3 w-100px overflow-scroll z-100 translateX" id="country">
-                            <!-- this is generated with js -->
+                            <!-- this is generated with js using api in generateHtml.js -->
                         </div>
                     </div>
                 </div>
+                <!-- the toggle button will turn from three lines to X when click -->
                 <button class="navbar-toggler ms-4 d-flex d-lg-none flex-column justify-content-between clicked mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     <span class="toggler-icon top-bar transition-5"></span>
                     <span class="toggler-icon middle-bar transition-5"></span>
@@ -106,13 +123,16 @@
                 </button>
             </div>
         </nav>
+        <!-- the offcanvas will appear on md screens and will open when the user click the toggle button-->
         <div class="offcanvas offcanvas-start bottom-0" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-body position-relative overflow-hidden">
+                <!-- the offcanvas body has the links that will collapse from the navbar -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-3">
                     <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <!-- this button will slide in the collection -->
                         <a class="nav-link d-flex align-items-center" href="#" id="openColllection">
                             Collectios 
                             <i class="fa-solid fa-arrow-right ms-auto"></i>
@@ -131,14 +151,17 @@
                         <a class="nav-link" href="#">Memory&Storage</a>
                     </li>
                     <li class="nav-item offcanvas-nav-hover rounded-2 px-3">
+                        <!-- this button will slide in the pages -->
                         <a class="nav-link d-flex align-items-center" href="#" id="openPages">
                             Pages
                             <i class="fa-solid fa-arrow-right ms-auto"></i>
                         </a>
                     </li>
                 </ul>
+                <!-- this is the collection that will slide in -->
                 <div class="container-fluid w-100 h-100 position-absolute top-0 start-100 bg-white overflow-scroll transition" id="collectionNav">
                     <div class="row p-3">
+                        <!-- and this button will slide out the collection -->
                         <p class="col-12 p-3 fs-2 offcanvas-nav-in rounded-2 px-3 closeNavMenu" id="closeCollection">
                             <i class="fa-solid fa-arrow-left"></i> 
                             Collectios
@@ -148,8 +171,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- this is the pages that will slide in -->
                 <div class="container-fluid w-100 h-100 position-absolute top-0 start-100 bg-white overflow-scroll transition" id="pagesNav">
                     <div class="row p-3">
+                        <!-- and this button will slide out the pages -->
                         <p class="col-12 p-3 fs-2 offcanvas-nav-in rounded-2 px-3 closeNavMenu" id="closePages">
                             <i class="fa-solid fa-arrow-left"></i> 
                             Pages
@@ -184,20 +209,33 @@
                 </div>
             </div>
         </div>
+        <!-- the hero section -->
         <div class="vh-100 overflow-hidden">
+            <!-- the hero is a larg carousal component from bootstrap -->
             <div id="carouselExampleFade" class="carousel slide carousel-fade w-100 h-100">
+                <!-- this is the first carousal item -->
                 <div class="carousel-inner h-100">
+                    <!-- the image will appear on the back is a background image and i will use the --img-url css var to pass the background image url and the position value so i can reuse the class backimg again -->
                     <div class="carousel-item active h-100 Backimg" style="--img-url: url(./../img/camera.jpg); --position: left;">
                         <div class="container h-100 d-flex justify-content-end align-items-center">
+                            <!-- here is the text that will appear in the carousal -->
+                            <!-- this container will be justified in a way to get with background img -->
+                            <!-- the maxWidth200 sets the max width to 200px -->
                             <div class="text-white text-center maxWidth200">
+                                <!-- the class notactiveLeft/Right is to make the transition when the caroual item i saactive
+                                it will get the elements to the original place -->
+                                <!-- the transition class sets the transition to 0.5s -->
                                 <h5 class="notactiveLeft transition">Revolutionizing Photography with</h5>
                                 <h1 class="notactiveRight transition">iPhone 15 Pro Max</h1>
+                                <!-- btnBlack will sets the border to white and on hover it will change the boeser and the background to red -->
                                 <button class="btnBlack notactiveLeft text-white text-uppercase bg-black transition fs-3 py-2 px-5 rounded-5">
                                     shop now
                                 </button>
                             </div>
                         </div>
                     </div>
+                    <!-- the rest of the items has the same structure -->
+                    <!-- this is the second carousal item -->
                     <div class="carousel-item h-100 Backimg" style="--img-url: url(./../img/screen.jpg); --position: right;">
                         <div class="container h-100 d-flex justify-content-start align-items-center">
                             <div class="text-white text-center maxWidth200">
@@ -209,6 +247,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- this is the third carousal item -->
                     <div class="carousel-item h-100 Backimg" style="--img-url: url(./../img/usbC.jpg); --position: left;">
                         <div class="container h-100 d-flex justify-content-end align-items-center">
                             <div class="text-white text-center maxWidth200 me-md-5 me-sm-0">
@@ -221,6 +260,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- the left and right buttons to change the carousal -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                     <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square" aria-hidden="true">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -233,20 +273,28 @@
                 </button>
             </div>
         </div>
-        <a href="#" class="btnBlack rounded-pill bg-black justify-content-center align-items-center square position-fixed end-0 bottom-0 translate-middle transition cursor displayOff" id="goUp">
+        <!-- fixed goUp button -->
+        <a href="#" class="btnBlack rounded-pill bg-black justify-content-center align-items-center square position-fixed end-0 translate-middle transition cursor displayOff" id="goUp">
             <i class="fa-solid fa-arrow-up text-white"></i>
         </a>
     </header>
 
+    <!-- the main with all the sections are in the website -->
     <main>
+        <!-- this is the offers div -->
         <div class="border-bottom border-secondary offcanvas-nav-in">
             <div class="container">
+                <!-- the row has three cols -->
                 <div class="row  justify-content-between align-items-center align-items-center">
+                    <!-- three cols all has the same structure -->
+                    <!-- the hoverScale selects the img inside and scale it on hover -->
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center gap-3 hoverScale my-4">
+                        <!-- each col has the img and the content with it -->
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="./assets/img/free-deliver-icon.webp" alt="free deliver icon" class="w-75 position-relative transition">
                         </div>
                         <div>
+                            <!-- the redHover will be used on all of the website it changes the colot to redon hover -->
                             <h1 class=" mb-0 fs-4 redHover transition">FREE SHIPPING</h1>
                             <p class="mb-0 opacity-75">For orders over $50</p>
                         </div>
@@ -272,15 +320,24 @@
                 </div>
             </div>
         </div>
+        <!-- the diffrences section -->
+        <!-- all sections has the same structure title, subtitile, and the main content which is a row div -->
         <section id="ics">
             <div class="container py-5">
+                <!-- title -->
                 <h1 class="text-center mb-3">WHAT MAKES THE ESSENTIAL DIFFERENT?</h1>
+                <!-- subtitle -->
+                <!-- letterSpacing class it sets the letter spacing to px -->
                 <p class="text-center opacity-75 letterSpacing">EXPERIENCE HIGH PERFORMANCE AND SECURE</p>
+                <!-- the main content is a row div -->
+                <!-- it has three cols each one has the img and the content -->
                 <div class="row mt-5">
+                    <!-- the hoverDownScale select the img and down scale it -->
                     <div class="col-lg-4 col-md-6 p-3 hoverDownScale">
                         <div class="d-flex justify-content-center mb-5">
                             <img src="./assets/img/ic12.webp" alt="ic12" class="transition">
                         </div>
+                        <!-- the cursor class will set the cusror to pointer on hover -->
                         <h2 class="text-center fs-5 redHover transition cursor">PERFECT CUT</h2>
                         <h1 class="text-center fs-4 redHover transition cursor">DUAL CAMERA</h1>
                         <p class="text-center opacity-75">Tristique senectus et netus et malesuada ant reiet fames.</p>
@@ -304,33 +361,40 @@
                 </div>
             </div>
         </section>
+        <!-- the best match section -->
+        <!-- over flow is hidden so the slider will not over flow the section -->
         <section class="overflow-hidden" id="bestMatch">
             <div class="container py-5 ">
                 <h1 class="text-center mb-3">FIND YOUR PERFECT MATCH</h1>
                 <p class="text-center opacity-75 letterSpacing">EXPLORE AND FIND RIGHT ONE</p>
+                <!-- this is the slider that i made on the first part of the task but with one change that the over flow is not hidden -->
                 <div class="row justify-content-center">
+                    <!-- the customHeight class sets the height to a spicific vlaue -->
                     <div class="col-lg-6 col-md-8 col-sm-10 customHeight">
                         <div class="w-100 h-100 position-relative">
-                            <div class="w-100 h-100 ">
-                                <div class="position-relative w-100 h-100  transitionSlide" id="slider">
-                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 0;">
-                                        <div class="overlay position-absolute removeOverlay" style="--img-url: url(./../img/apple4.webp); --position: center;" data-slide="0">
-                                        </div>
+                            <!-- this div has all of the sliders -->
+                            <div class="w-100 h-100 position-relative transition" id="slider">
+                                <!-- the slide class will use the --slide-id to set the translateX to each slide -->
+                                <div class="slide w-100 h-100 position-absolute" style="--slide-id: 0;">
+                                    <!-- the overlay will add overlay if the removeoverlay is not added and it will set the inset to a value so it has a space between slides -->
+                                    <!-- at the same time the overlay will use the two vars same as the backimg -->
+                                    <div class="overlay removeOverlay position-absolute" style="--img-url: url(./../img/apple4.webp); --position: center;" data-slide="0">
                                     </div>
-                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 1;">
-                                        <div class="overlay position-absolute" style="--img-url: url(./../img/apple2.webp); --position: center;" data-slide="1">
-                                        </div>
+                                </div>
+                                <div class="slide w-100 h-100 position-absolute" style="--slide-id: 1;">
+                                    <div class="overlay position-absolute" style="--img-url: url(./../img/apple2.webp); --position: center;" data-slide="1">
                                     </div>
-                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 2;">
-                                        <div class="overlay position-absolute" style="--img-url: url(./../img/apple3.webp); --position: center;" data-slide="2">
-                                        </div>
+                                </div>
+                                <div class="slide w-100 h-100 position-absolute" style="--slide-id: 2;">
+                                    <div class="overlay position-absolute" style="--img-url: url(./../img/apple3.webp); --position: center;" data-slide="2">
                                     </div>
-                                    <div class="slide w-100 h-100 position-absolute" style="--slide-id: 3;">
-                                        <div class="overlay position-absolute"  style="--img-url: url(./../img/apple.webp); --position: center;" data-slide="3">
-                                        </div>
+                                </div>
+                                <div class="slide w-100 h-100 position-absolute" style="--slide-id: 3;">
+                                    <div class="overlay position-absolute"  style="--img-url: url(./../img/apple.webp); --position: center;" data-slide="3">
                                     </div>
                                 </div>
                             </div>
+                            <!-- these are the left and the tight buttons -->
                             <span class="btnBlack rounded-pill bg-black d-flex justify-content-center align-items-center square position-absolute top-50 start-0 translate-middle-y cursor" id="left">
                                 <i class="fa-solid fa-chevron-left text-white"></i>
                             </span>
@@ -342,59 +406,68 @@
                 </div>
             </div>
         </section>
+        <!-- this is the features section -->
         <section id="features">
             <div class="container py-5">
                 <h1 class="text-center mb-3">POSSIBILITIES. PERFORMANCE. POWER.</h1>
                 <p class="text-center opacity-75 letterSpacing">FASTER PROCESSING WITH LESS POWER</p>
+                <!-- here is the imgs and the dots that will be animated -->
                 <div class="position-relative">
                     <img src="./assets/img/features.webp" alt="iPhone" class="w-100">
-                    <div class="position-absolute feature" style="--dot-id: 0.9">
-                        <div class="dot rounded-pill bg-black" style="--animation-delay: 0.9s; --line-level: 1;"></div>
-                    </div>
-                    <div class="position-absolute feature" style="--dot-id: 3">
-                        <div class="dot rounded-pill bg-black" style="--animation-delay: 2s; --line-level: 3;"></div>
-                    </div>
-                    <div class="position-absolute feature" style="--dot-id: 5">
-                        <div class="dot rounded-pill bg-black" style="--animation-delay: 0.5s; --line-level: 1;"></div>
-                    </div>
-                    <div class="position-absolute feature" style="--dot-id: 7.1">
-                        <div class="dot rounded-pill bg-black" style="--animation-delay: 1.5s; --line-level: 3;"></div>
-                    </div>
+                    <!-- the dot class will animate and set the lefg proprety using the --dot-id and will set the height of the after using the --line-level and teh animation will be delayed using --animation-delay -->
+                    <!-- the data-card-target will refers to the card that belong to the dot so when the user click on the dot-->
+                    <div class="position-absolute dot rounded-pill bg-black cursor" style="--animation-delay: 0.9s; --line-level: 1; --dot-id: 0.9;" data-card-target="0"></div>
+                    <div class="position-absolute dot rounded-pill bg-black cursor" style="--animation-delay: 2.3s; --line-level: 3; --dot-id: 3;" data-card-target="1"></div>
+                    <div class="position-absolute dot rounded-pill bg-black cursor" style="--animation-delay: 0.5s; --line-level: 1; --dot-id: 5;" data-card-target="2"></div>
+                    <div class="position-absolute dot rounded-pill bg-black cursor" style="--animation-delay: 1.5s; --line-level: 3; --dot-id: 7.1;" data-card-target="3"></div>
                 </div>
+                <!-- the transformOdd will translateY the odd col -->
+                <!-- i choose to do thet so teh cards still takes place in the section and not to over flow on small screens -->
                 <div class="row transformOdd">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="./assets/img/ic7.webp" alt="ic7" class="w-25">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" >
+                        <!-- the dot-card is used to set the border so when the card has a border it will not move and its used to select the elements in app.js -->
+                        <div class="dot-card rounded-4 borderWhite transition" data-card-id="0">
+                            <div class="d-flex mt-4 justify-content-center align-items-center mb-4">
+                                <img src="./assets/img/ic7.webp" alt="ic7" class="w-25">
+                            </div>
+                            <h5 class="text-center redHover transition cursor">SCORPION PROCESSOR</h5>
+                            <p class="text-center">Tristique senectus et netus et malesuada fames ac turpis.</p>
                         </div>
-                        <h5 class="text-center redHover transition cursor">SCORPION PROCESSOR</h5>
-                        <p class="text-center">Tristique senectus et netus et malesuada fames ac turpis.</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="./assets/img/ic10.webp" alt="ic7" class="w-25">
+                        <div class="dot-card rounded-4 transition" data-card-id="1">
+                            <div class="d-flex mt-4 justify-content-center align-items-center mb-4">
+                                <img src="./assets/img/ic10.webp" alt="ic7" class="w-25">
+                            </div>
+                            <h5 class="text-center redHover transition cursor">DUAL SIM CARDS</h5>
+                            <p class="text-center">Donec ultrices tincidunt arcu non sodales neque sodales ut.</p>
                         </div>
-                        <h5 class="text-center redHover transition cursor">DUAL SIM CARDS</h5>
-                        <p class="text-center">Donec ultrices tincidunt arcu non sodales neque sodales ut.</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="./assets/img/ic90.webp" alt="ic7" class="w-25">
+                        <div class="dot-card rounded-4 transition" data-card-id="2">
+                            <div class="d-flex mt-4 justify-content-center align-items-center mb-4">
+                                <img src="./assets/img/ic90.webp" alt="ic7" class="w-25">
+                            </div>
+                            <h5 class="text-center redHover transition cursor">48 MP CAMERA</h5>
+                            <p class="text-center">Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed.</p>
                         </div>
-                        <h5 class="text-center redHover transition cursor">48 MP CAMERA</h5>
-                        <p class="text-center">Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed.</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="./assets/img/ic8.png" alt="ic7" class="w-25">
+                        <div class="dot-card rounded-4 transition" data-card-id="3">
+                            <div class="d-flex mt-4 justify-content-center align-items-center mb-4">
+                                <img src="./assets/img/ic8.png" alt="ic7" class="w-25">
+                            </div>
+                            <h5 class="text-center redHover transition cursor">48 HRS BACKUP</h5>
+                            <p class="text-center">Natoque penatibus et magnis dis parturient montes nascetur.</p>
                         </div>
-                        <h5 class="text-center redHover transition cursor">48 HRS BACKUP</h5>
-                        <p class="text-center">Natoque penatibus et magnis dis parturient montes nascetur.</p>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- the casfer customer section -->
+        <!-- the fixedBackimg same as the backimg but with a fixed background -->
         <section class="fixedBackimg mt-5" style="--fixed-img: url(./../img/applelogo.png);">
-            <div class="container vh-100 d-flex justify-content-center align-items-center flex-column">
+            <div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
                 <p class="text-white text-center">JENNIFER F., CASPER CUSTOMER</p>
                 <h1 class="text-white text-center mb-4 fontSizeBig">"Unbeatable price, and it’s super comfortable"</h1>
                 <button class="btnBlack text-dark text-uppercase bg-white transition fs-5 py-2 px-4 rounded-5">
@@ -402,12 +475,14 @@
                 </button>
             </div>
         </section>
+        <!-- the expectations section -->
         <section>
             <div class="container py-5">
                 <h1 class="text-center mb-3">RAISE YOUR EXPECTATIONS</h1>
                 <p class="text-center opacity-75 letterSpacing mb-5">REFINED VIEWING EXPERIENCE</p>
                 <div class="row justify-content-between">
                     <div class="col-md-5 order-md-0 order-1 mt-md-0 mt-5">
+                        <!-- center-sm class will change the text align to center -->
                         <h4 class="center-sm">42 FRONT CAMERA FOR PERFECT SHOT</h4>
                         <p class="center-sm">
                             Porem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui official.
@@ -416,19 +491,18 @@
                             Diam vulputate ut pharetra sit. Elit ut aliquam purus sit amet luctus venenatis lectus. Lorem dolor sed viverra ipsum nunc aliquet. Ut consequat semper viverra nam libero. Velit ut tortor aremn.
                         </p>
                     </div>
-                    <div class="col-md-5 order-md-1 order-0 Backimg px-0" style="--img-url: url(./../img/appleCollection.jpg); --position: center;">
-                        <img src="./assets/img/appleCollection.jpg" alt="appleCollection" class="imgHide w-100">
-                    </div>
+                    <div class="col-md-5 order-md-1 order-0 Backimg px-0 min-height-300px" style="--img-url: url(./../img/appleCollection.jpg); --position: center;"></div>
                 </div>
             </div>
         </section>
+        <!-- intertainment section -->
         <section class="fixedBackimg" style="--fixed-img: url(./../img/iphoneBack.webp);">
             <div class="container pt-5">
                 <h1 class="text-center mb-3 text-white">LOSE YOURSELF IN ENTERTAINMENT</h1>
                 <p class="text-center opacity-75 letterSpacing mb-5 text-white">SPEND LESS ENJOY MORE</p>
                 <div class="row justify-content-between">
                     <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3">
-                        <div class="object-fit-contain bg-white p-4 text-center">
+                        <div class="bg-white p-4 text-center">
                             <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
                                 <p class="mb-0 text-white">1</p>
                             </div>
@@ -440,7 +514,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3">
-                        <div class="object-fit-contain bg-white p-4 text-center">
+                        <div class="bg-white p-4 text-center">
                             <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
                                 <p class="mb-0 text-white">2</p>
                             </div>
@@ -452,7 +526,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mb-lg-0 col-sm-6 mb-3 mx-sm-auto">
-                        <div class="object-fit-contain bg-white p-4 text-center">
+                        <div class="bg-white p-4 text-center">
                             <div class="square rounded-pill btnBlack transition bg-black mb-3 d-flex justify-content-center align-items-center mx-auto">
                                 <p class="mb-0 text-white">3</p>
                             </div>
@@ -466,12 +540,16 @@
                 </div>
             </div>
         </section>
+        <!-- the qualityand features section -->
         <section>
             <div class="container py-5">
                 <h1 class="text-center mb-3">INNOVATIVE QUALITIES & FEATURES</h1>
                 <p class="text-center opacity-75 letterSpacing mb-5">SHOW YOURS TO THE WORLD</p>
+                <!-- here i have three cols on lg but on the md sreens it will be two cols and teh img will be in the background -->
                 <div class="row align-items-center position-relative bg-white-transparent py-4">
                     <div class="col-lg-5 col-sm-6 col-12" style="--align: end">
+                        <!-- the flexColummd will change the flex direction to column on sm screens -->
+                        <!-- align-items-end-md class will align the items to the end on sm screens -->
                         <div class="d-flex flexColummd mb-3 align-items-end-md">
                             <div class="flex-grow-1 pe-0 me-3 text-bold order-md-0 order-1 center-xs">
                                 <h5 class="redHover transition">INTELLIGENT PROCESSOR</h5>
@@ -500,6 +578,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- the image will go to the center backgroung by the position-absolute-lg -->
                     <div class="col-lg-2 position-absolute-lg">
                         <img src="./assets/img/iphone21424.jpg" alt="iphone21424" class="w-100">
                     </div>
@@ -535,13 +614,15 @@
                 </div>
             </div>
         </section>
+        <!-- new arrivals section -->
         <section class="overflow-hidden">
             <div class="container py-5">
                 <h1 class="text-center mb-3">NEW ARRIVALS</h1>
                 <p class="text-center opacity-75 letterSpacing mb-5">FIND THE PERFECT PHONE FOR YOU</p>
                 <div class="row position-relative overflow-hidden pb-2">
                     <div class="col-lg-3 col-md-6 col-sm-6 px-0">
-                        <div class=" transitionSlide position-relative object-fit-contain" id="sliderBig">
+                        <!-- this div to keep the height stable -->
+                        <div class=" transitionSlide position-relative" id="sliderBig">
                             <div class="w-100 px-2">
                                 <div class="customHeight"></div>
                                 <div class="height-147px"></div>
@@ -557,13 +638,14 @@
                 </div>
             </div>
         </section>
+        <!-- advanteges section -->
         <section>
             <div class="container-fluid">
                 <div class="row mt-5">
                     <div class="col-lg-8 col-md-12 order-lg-0 order-1">
                         <div class="row">
-                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img">
-                                <img src="./assets/img/sqyare1.jpg" alt="sqyare1" class="w-100 h-100 object-fit-cover">
+                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img hoverScale overflow-hidden">
+                                <img src="./assets/img/sqyare1.jpg" alt="sqyare1" class="w-100 h-100 object-fit-cover transition">
                                 <div class="position-absolute top-0 start- bg-Dark-transparent transition"></div>
                                 <div class="position-absolute top-50 translate-middle-y start-0 text-white p-4 transition">
                                     <p class="mb-2">DOT NOTCH DISPLAY</p>
@@ -573,8 +655,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img">
-                                <img src="./assets/img/sqyare2.jpeg" alt="sqyare2"  class="w-100 h-100 object-fit-cover">
+                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img hoverScale overflow-hidden">
+                                <img src="./assets/img/sqyare2.jpeg" alt="sqyare2"  class="w-100 h-100 object-fit-cover transition">
                                 <div class="position-absolute top-0 start-0 bg-Dark-transparent transition"></div>
                                 <div class="position-absolute top-50 translate-middle-y start-0 text-white p-4 transition">
                                     <p class="mb-2">CRYSTAL POLYCARBONATEv</p>
@@ -584,8 +666,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img">
-                                <img src="./assets/img/sqyare3.jpg" alt="sqyare3"  class="w-100 h-100 object-fit-cover">
+                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img hoverScale overflow-hidden">
+                                <img src="./assets/img/sqyare3.jpg" alt="sqyare3"  class="w-100 h-100 object-fit-cover transition">
                                 <div class="position-absolute top-0 start-0 bg-Dark-transparent transition"></div>
                                 <div class="position-absolute top-50 translate-middle-y start-0 text-white p-4 transition">
                                     <p class="mb-2">BEAUTIFUL FINISH</p>
@@ -595,8 +677,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img">
-                                <img src="./assets/img/sqyare4.jpg" alt="sqyare4"  class="w-100 h-100 object-fit-cover">
+                            <div class="col-sm-6 height-300px px-0 position-relative w-h-hover-img hoverScale overflow-hidden">
+                                <img src="./assets/img/sqyare4.jpg" alt="sqyare4"  class="w-100 h-100 object-fit-cover transition">
                                 <div class="position-absolute top-0 start-0 bg-Dark-transparent transition"></div>
                                 <div class="position-absolute top-50 translate-middle-y start-0 text-white p-4 transition">
                                     <p class="mb-2">HIGH SPEED</p>
@@ -608,8 +690,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 height-md-300px px-0 position-relative w-h-hover-img order-lg-1 order-0">
-                        <img src="./assets/img/sqyare5.jpg" alt="sqyare5"  class="w-100 h-100 object-fit-cover overflow-hidden">
+                    <div class="col-lg-4 col-md-12 height-md-300px px-0 position-relative w-h-hover-img order-lg-1 order-0 hoverScale overflow-hidden">
+                        <img src="./assets/img/sqyare5.jpg" alt="sqyare5"  class="w-100 h-100 object-fit-cover overflow-hidden transition">
                         <div class="position-absolute top-0 start-0 bg-Dark-transparent transition"></div>
                         <div class="position-absolute translate-middle-y-xs start-0 text-white p-4 transition">
                             <p class="mb-2">CURVED CERAMIC BODY</p>
@@ -622,6 +704,7 @@
                 </div>
             </div>
         </section>
+        <!-- customers opinion section -->
         <section class="fixedBackimg" style="--fixed-img: url(./../img/appleStore.jpg);">
             <div class="container py-5">
                 <h1 class="text-white text-center mb-4 fontSizeBig">SEE WHY CUSTOMERS LOVE THE OUR MOBILES</h1>
@@ -701,6 +784,7 @@
                 </div>
             </div>
         </section>
+        <!-- call phone support section -->
         <section>
             <div class="container py-5">
                 <h1 class="text-center mb-4 fontSizeBig">WELCOME TO PHONO SUPPORT. WE'RE HERE TO HELP.</h1>
@@ -740,6 +824,7 @@
                 </div>
             </div>
         </section>
+        <!-- phone support section -->
         <section class="fixedBackimg min-vh-100 d-flex align-items-center" style="--fixed-img: url(./../img/appleNewLogo.webp);">
             <div class="container py-5">
                 <p class="text-center text-white">ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</p>
@@ -763,9 +848,10 @@
             </div>
         </section>
     </main>
+
     <footer>
         <div class="container py-3 d-flex justify-content-between flexColummd">
-            <p class="mb-0 text-center">&copy; 2023, Phono (password: buddha) Design Themes</p>
+            <p class="mb-0 text-center mb-md-0 mb-4">&copy; 2023, Phono (password: buddha) Design Themes</p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="#" class="text-decoration-none">
                     <i class="fa-brands fa-cc-visa text-dark fs-3"></i>

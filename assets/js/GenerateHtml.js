@@ -1,3 +1,6 @@
+
+
+// this code is to load the collection menu twice one as a dropdown menu and the second to slide in and out the offcanvas
 let ssdCardH= 'SSD CARD';
 let ssdCard = ['Affinity M20','Affinity P40 Pro','PO V40 ThinQ','Tencho 7.3','Tencho 8.1','Nexian','Ningbo','Fix A Phone','Hisense','Force Cell'];
 let PowerH = 'POWER BANKS';
@@ -7,21 +10,22 @@ let earPhonr =['Spots Y93 1815','Tencho F12 Pro','Telefonika','T-Blast','Alcatel
 let androidH = 'ANDROID';
 let android = ['Tencho 10 Lite','Tencho 7.3','Spectrum','Hisense','Bluesky','GreatDid','Mastic','Pigeon Cell','Arise Cell','Ritz Cell'];
 
-const collectionContainer = document.querySelector('#collectionContainer');
-
+// this is teh function
 function genrateCollection(tag, h, arr, col) {
     let inner = ``;
     arr.forEach(element => {
         inner+= `<a href="#" class="redHover transition text-decoration-none text-dark mt-2">${element}</a>`;
     });
     tag.innerHTML += `
+    const collectionContainer = document.querySelector('#collectionContainer');
     <div class="${col} d-flex flex-column align-items-start">
-        <h4 class="border-bottom py-2">${h}</h4>
-        ${inner}
+    <h4 class="border-bottom py-2">${h}</h4>
+    ${inner}
     </div>
     `;
 };
-
+// load on dropdown
+const collectionContainer = document.querySelector('#collectionContainer');
 let column = 'col';
 
 genrateCollection(collectionContainer, ssdCardH, ssdCard, column);
@@ -33,7 +37,7 @@ collectionContainer.innerHTML +=`<div class="col d-flex justity-content-center a
                                 </div>`;
 
 
-
+// load on offcanvas
 const collectionContainerOffCanvas = document.querySelector('#collectionContainerOffCanvas');
 
 column = 'col-12';
@@ -49,25 +53,8 @@ collectionContainerOffCanvas.innerHTML +=`<div class="col-12 d-flex justify-cont
 
 
 
-
-
-
-
-
-
-
-
-
-// const countryCode = ["AF","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT","BO","BQ","BA","BW","BV","BR","IO","BN","BG","BF","BI","CV","KH","CM","CA","KY","CF","TD","CL","CN","CX","CC","CO","KM","CD","CG","CK","CR","HR","CU","CW","CY","CZ","CI","DK","DJ","DM","DO","EC","EG","SV","GQ","ER","EE","SZ","ET","FK","FO","FJ","FI","FR","GF","PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GD","GP","GU","GT","GG","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","ID","IR","IQ","IE","IM","IL","IT","JM","JP","JE","JO","KZ","KE","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO","MG","MW","MY","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","ME","MS","MA","MZ","MM","NA","NR","NP","NL","NC","NZ","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PE","PH","PN","PL","PT","PR","QA","MK","RO","RU","RW","RE","BL","SH","KN","LC","MF","PM","VC","WS","SM","ST","SA","SN","RS","SC","SL","SG","SX","SK","SI","SB","SO","ZA","GS","SS","ES","LK","SD","SR","SJ","SE","CH","SY","TW","TJ","TZ","TH","TL","TG","TK","TO","TT","TN","TR","TM","TC","TV","UG","UA","AE","GB","UM","US","UY","UZ","VU","VE","VN","VG","VI","WF","EH","YE","ZM","ZW","AX",];
-// let newArray = [];
-// countryCode.forEach(element => {
-//     newArray.push(element.toLowerCase());
-// });
-
-
+// getting the country codes from api and then adding the eventlistener
 const country = document.querySelector('#country');
-
-
 fetch('https://restcountries.com/v3.1/all')
 .then(res => {
     return res.json();
@@ -88,6 +75,8 @@ fetch('https://restcountries.com/v3.1/all')
     }
 );
 
+// loading the flages and the codes
+// teh flag is loaded from awebsite using the country code
 function flags(arr) {
     arr.forEach(element => {
         country.innerHTML += `<div class="d-flex align-items-center countryItem"><a class="dropdown-item px-0 text-uppercase" href="#">${element.altSpellings[0].toLowerCase()}</a><img src="https://flagcdn.com/${element.altSpellings[0].toLowerCase()}.svg" width="20px" alt="flag"></div>`;
@@ -99,8 +88,7 @@ function flags(arr) {
 
 
 
-
-
+// gettinf the products detailes from api
 fetch('https://dummyjson.com/products')
 .then(res => {
     return res.json();
@@ -111,10 +99,11 @@ fetch('https://dummyjson.com/products')
 
 // const sliderBig = document.querySelector('#sliderBig');
 let imgs;
-
 let cardNumber = 0;
 
-
+// displaying only 6 productes and it should be from Apple or Huawi or infinix or oppo
+// at the same time i am counting the final price after discount and the number of stars for each product dynamicly
+// i did consider out of stoke products but there is no out of stocks product
 function displayProduct(arr) {
     for (let index = 0; index < arr.length; index++) {
         const element = arr[index];
