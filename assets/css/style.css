@@ -193,10 +193,10 @@
     font-size: 5rem;
 }
 .notactiveLeft{
-    transform: translateX(-10%);
+    transform: translateX(-1000%);
 }
 .notactiveRight{
-    transform: translateX(10%);
+    transform: translateX(1000%);
 }
 .carousel-item.active .notactiveLeft, .carousel-item.active .notactiveRight{
     transform: translateX(0);
